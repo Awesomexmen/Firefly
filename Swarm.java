@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class Swarm
 {
@@ -7,5 +8,9 @@ public class Swarm
         for (int i = 0; i < n; i++) {
             fireflies.add(new Firefly(/*some x*/, /*some y*/));
         }
+    }
+
+    public emit() {
+
     }
 }
