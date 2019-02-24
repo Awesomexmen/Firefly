@@ -37,7 +37,6 @@ class Swarm:
         y2 = fly_coords[1]
         dist = self.distance(x1, y1, x2, y2)
         return 0.85 / (1 + 2.7182818 ** (5 * (dist - 1.6)))
-        # return 1 / (dist + (1/9))
 
     def distance(self, x1, y1, x2, y2):
         return (((y2 - y1) ** 2) + ((x2 - x1) ** 2)) ** (1/2)

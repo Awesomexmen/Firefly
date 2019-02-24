@@ -1,10 +1,13 @@
 import board
 import neopixel
 import time
+from swarm import Swarm
+import sched, time
+import threading
 
 ORDER = neopixel.GRB
 pixel_pin = board.D18
-num_pixels = 30
+num_pixels = 50
 
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.03, auto_write=False, pixel_order=ORDER)
 
@@ -47,5 +50,28 @@ mtx_mp = {
     (5,0): 50
 }
 
+s = sched.scheduler(time.time, time.sleep)
 
+swarm = Swarm(18, s)
+swarm.begin_flashing(60, 1, 0.01)
 
+color = (255, 0, 0)
+off = (0, 0, 0)
+
+def update_leds:
+    for f in swarm.fireflies:
+        if f.flashing:
+            pixels[mtx_mp[f.coords]] = color
+        else:
+            pixel[mtx_mp[f.coords]] = off
+
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
+
+set_interval(update_leds, 0.05)
+s.run()
