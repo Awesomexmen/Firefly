@@ -58,7 +58,7 @@ swarm.begin_flashing(10000, 1, 0.01)
 off = (0, 0, 0)
 color_id = 0
 color_dir = 0
-rgb = False
+rgb = True
 
 def wheel(pos):
 # Input a value 0 to 255 to get a color value.
