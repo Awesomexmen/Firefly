@@ -53,12 +53,12 @@ mtx_mp = {
 s = sched.scheduler(time.time, time.sleep)
 
 swarm = Swarm(6, s)
-swarm.begin_flashing(10000, 1, 0.025)
+swarm.begin_flashing(10000, 1, 0.03)
 
 off = (0, 0, 0)
 color_id = 0
 color_dir = 0
-rgb = True
+rgb = False
 
 def wheel(pos):
 # Input a value 0 to 255 to get a color value.
@@ -84,7 +84,7 @@ def wheel(pos):
 def update_leds() -> int:
     global color_id
     global color_dir
-    color = wheel(color_id) if rgb else (255,255,102)
+    color = wheel(color_id) if rgb else (255,150,0)
     for f in swarm.fireflies:
         intensity = f.get_curr_intensity()
         pixels[mtx_mp[f.coords] + 3] = (int(color[0] * intensity), int(color[1] * intensity), int(color[2] * intensity))

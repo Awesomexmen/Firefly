@@ -19,7 +19,7 @@ class Swarm:
 
     def flash_firefly(self, f):
         if not f.can_flash: return
-        f.flash(random.uniform(0.2, 0.6), 1.2)
+        f.flash(random.uniform(0.1, 0.4), 1.2)
         self.emit_signal(f)
 
     def emit_signal(self, f):
@@ -27,7 +27,7 @@ class Swarm:
         for fly in self.fireflies:
             flash_chance = self.get_flash_chance(f.coords, fly.coords)
             if random.random() < flash_chance:
-                self.scheduler.enter(random.uniform(0.05, 0.08), 1, self.flash_firefly, argument=[fly])
+                self.scheduler.enter(random.uniform(0.04, 0.05), 1, self.flash_firefly, argument=[fly])
 
     def get_flash_chance(self, origin_coords, fly_coords):
 
