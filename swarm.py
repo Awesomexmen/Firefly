@@ -19,7 +19,7 @@ class Swarm:
 
     def flash_firefly(self, f):
         if not f.can_flash: return
-        f.flash(0.2, 1)
+        f.flash(random.uniform(0.2, 0.6), 1.2)
         self.emit_signal(f)
 
     def emit_signal(self, f):
@@ -27,7 +27,7 @@ class Swarm:
         for fly in self.fireflies:
             flash_chance = self.get_flash_chance(f.coords, fly.coords)
             if random.random() < flash_chance:
-                self.scheduler.enter(random.uniform(0.1, 0.15), 1, self.flash_firefly, argument=[fly])
+                self.scheduler.enter(random.uniform(0.02, 0.04), 1, self.flash_firefly, argument=[fly])
 
     def get_flash_chance(self, origin_coords, fly_coords):
 
@@ -36,11 +36,11 @@ class Swarm:
         x2 = fly_coords[0]
         y2 = fly_coords[1]
         dist = self.distance(x1, y1, x2, y2)
-        return 0.9 / (1 + 2.7182818 ** (5 * (dist - 1.6)))
+        return 0.85 / (1 + 2.7182818 ** (5 * (dist - 1.6)))
         # return 1 / (dist + (1/9))
 
     def distance(self, x1, y1, x2, y2):
-        return (((x2 - x1) ** 2) + (y2 - y1) ** 2) ** (1/2)
+        return (((y2 - y1) ** 2) + ((x2 - x1) ** 2)) ** (1/2)
 
     def print_status(self):
         print("\n" * 50)
@@ -48,10 +48,10 @@ class Swarm:
         for i in range(n):
             row = ""
             for j in range(n):
-                if self.fireflies[i*6 + j].flashing:
+                if self.fireflies[i*n + j].flashing:
                     row += "*"
                 else:
                     row += "-"
-                row += "         "
+                row += "   "
 
-            print(row + "\n" * 4)
+            print(row + "\n" * 1)
