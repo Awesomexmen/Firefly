@@ -11,8 +11,6 @@ meta_pixels = [[0, 0, 0, 0] for _ in range(len(pixels))]
 
 
 
-
-
 up_to = 0
 
 for up_to in range(len(pixels)):
@@ -35,6 +33,8 @@ for up_to in range(len(pixels)):
                 meta_pixels[bulb] = [0,0,0,0]
                 continue
             pixels[bulb] = (meta_pixels[bulb][0], meta_pixels[bulb][1], meta_pixels[bulb][2])
+            print(meta_pixels[bulb])
+            raise Exception()
             meta_pixels[bulb][3] += 1
         pixels.show()
 
