@@ -19,7 +19,7 @@ class Swarm:
 
     def flash_firefly(self, f):
         if not f.can_flash: return
-        f.flash(random.uniform(0.1, 0.4), 1.2)
+        f.flash(random.uniform(0.15, 0.25), 1.2)
         self.emit_signal(f)
 
     def emit_signal(self, f):
